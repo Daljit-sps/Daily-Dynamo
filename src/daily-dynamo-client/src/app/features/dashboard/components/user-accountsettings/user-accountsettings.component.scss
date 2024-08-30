@@ -1,0 +1,32 @@
+.check-mat-icon{
+    font-size: 20px;
+}
+.mat-spinner {
+    fill: white;
+  }
+  
+  .bg-gray-300 {
+    background-color: rgba(0, 0, 0, 0.2); /* Lighter shade for the overlay */
+  }
+  
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .responsive {
+        flex-direction: column;
+    }
+
+    .responsive .flex-col {
+        flex-direction: column; /* Change to column layout for smaller screens */
+    }
+
+    .responsive .flex-col .text-xs li {
+        display: flex; /* Display list items as flex items */
+        align-items: center; /* Align items vertically */
+    }
+
+    
+}

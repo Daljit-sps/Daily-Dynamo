@@ -1,0 +1,49 @@
+.profile-div{
+  height: 100%;
+}
+.bg-color {
+  background-color: #6564D7;
+}
+
+.nav-element {
+  transition: background-color 0.3s ease; 
+}
+
+.nav-element:hover {
+  background-color: #8887FF; 
+  cursor: pointer;
+}
+
+.nav-element.selected {
+  background-color: #8887FF; 
+}
+
+@media screen and (max-width: 768px) {
+  .profile-div{
+    height: 170svh;
+  }
+  .top-div-responsive {
+      position: relative !important;
+      width: 100% !important;
+  }
+
+  .bottom-div-responsive {
+    position: relative !important;
+    width: 100% !important;
+    top: 50% !important;
+      transform: translateY(-50%) !important;
+      right: 0 !important;
+  }
+
+
+  .data-responsive {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 90% !important;
+      margin-top: 80px;
+      height: 800px;
+      overflow-y: auto;
+  }
+
+}
+

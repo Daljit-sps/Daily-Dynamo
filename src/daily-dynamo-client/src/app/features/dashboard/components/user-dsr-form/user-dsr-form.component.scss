@@ -1,0 +1,21 @@
+.mat-spinner {
+  fill: white;
+}
+
+.bg-gray-300 {
+  background-color: rgba(0, 0, 0, 0.2); /* Lighter shade for the overlay */
+}
+
+
+@media (max-width: 768px) {
+    .grid-cols-responsive {
+      grid-template-columns: 1fr;
+    }
+  
+    .form-div {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+  }
+  
+  

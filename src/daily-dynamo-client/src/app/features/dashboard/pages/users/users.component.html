@@ -1,0 +1,27 @@
+<div
+  class="grid gap-8 p-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 min-[2000px]:grid-cols-7 place-items-center"
+>
+  <ng-container
+    *ngIf="{ users: user$ | async, error: userError$ | async } as data"
+  >
+    <ng-container *ngIf="data.users; else loadingUsers">
+      <ng-container *ngFor="let item of data.users">
+        <dd-user-card [user]="item" (click)="redirectToUserProfile(item.id)"/>
+      </ng-container>
+    </ng-container>
+    <ng-template #loadingUsers>
+      <ng-container *ngIf="!data.error">
+        <ng-container *ngFor="let item of [0, 0, 0, 0, 0, 0, 0]">
+          <app-user-card-skeleton
+        /></ng-container>
+      </ng-container>
+      <ng-container *ngIf="data.error">
+        <div class="w-full col-span-full">
+          <p class="w-full text-center text-red-500 bg-red-200 rounded-sm">
+            Somethign went wrong
+          </p>
+        </div>
+      </ng-container>
+    </ng-template>
+  </ng-container>
+</div>

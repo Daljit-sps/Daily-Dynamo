@@ -1,0 +1,52 @@
+<div class="dsr-div flex basis-[100%] bg-background_sec">
+  <div class="dsr-list-div sm:w-20 lg:w-96 h-[40rem] place-items-center bg-background_sec rounded-2xl sm:mx-4 lg:mx-10 my-6 overflow-y-auto shadow-theme_form overflow-y-auto"> 
+    <form (ngSubmit)="getDSRForSelectedDates()" [formGroup]="form" class="form-div flex flex-col gap-2 rounded-lg p-5">
+      <div class="gap-5 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+        <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+          <input matInput [matDatepicker]="fromDatePicker" formControlName="fromDate" id="fromDate" placeholder="From Date">
+          <mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #fromDatePicker></mat-datepicker>
+          <mat-error *ngIf="controls.fromDate.errors">
+              <small *ngIf="controls.fromDate.errors['required']">From Date is required</small>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+          <input matInput [matDatepicker]="toDatePicker" formControlName="toDate" id="toDate" placeholder="To Date">
+          <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #toDatePicker></mat-datepicker>
+          <mat-error *ngIf="controls.toDate.errors">
+              <small *ngIf="controls.toDate.errors['required']">To Date is required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex flex-col items-center mt-0">
+        <button [disabled]="loading" class="shadow-lg w-48" mat-raised-button color="primary" type="submit">Show</button>
+      </div>
+    </form>  
+    <table class="w-full table-auto">
+          <thead>
+            <tr>
+              <th class="border-b px-4">Date</th>
+              <th class="border-b px-4">Report</th>
+            </tr>
+          </thead>
+          <tbody class="text-xs text-center">
+            <tr *ngFor="let dsr of userDSRs" class="data-tr" (click)="selectDSR(dsr.id || '')">
+              <td class="border-b px-4 py-2">{{ dsr.reportDate }}</td>
+              <td class="border-b px-4 py-2">{{ truncateText(dsr.taskAccomplished) }}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="add-dsr-div flex-1 rounded-2xl m-10">
+      <div class="flex">
+          <button *ngIf="!hideAddButton" class="shadow-lg w-48 border border-indigo-500" mat-raised-button color="bg-white" type="button" (click)="resetFormAndShow()">
+            Add new record
+          </button>
+      </div>
+      <div class="bg-background_sec rounded-2xl my-3 h-[36rem] shadow-theme_form">
+        <app-user-dsr-form  [selectedDSR]="selectedDSR"></app-user-dsr-form>
+      </div>
+      
+  </div>
+</div>

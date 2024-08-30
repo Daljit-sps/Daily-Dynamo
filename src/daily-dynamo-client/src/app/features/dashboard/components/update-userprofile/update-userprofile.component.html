@@ -1,0 +1,182 @@
+
+<div class="grid place-items-center basis-[100%]">
+  <form
+    (ngSubmit)="updateProfile()"
+    [formGroup]="form"
+    class="form-div flex flex-col gap-3 bg-white rounded-lg pt-5"
+  >
+    <p>{{userName}}'s Profile </p>
+    <hr class="h-px bg-zinc-950 border-0 dark:bg-gray-700">
+    <input matInput type="text" formControlName="id" hidden />
+    <div class="gap-5 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName"/>
+        <mat-error *ngIf="controls.firstName.errors">
+          <small *ngIf="controls.firstName.errors['required']"
+            >First name is required
+          </small>
+          <small *ngIf="controls.firstName.errors['pattern']"
+            >Only alphabets allowed</small
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Department</mat-label>
+        <mat-select formControlName="department">
+          <mat-option *ngFor="let department of departments$ | async" [value]="department.Id">
+            {{ department.DepartmentName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="controls.department.errors">
+          <small *ngIf="controls.department.errors['required']"
+            >Department is required
+          </small>
+          <small *ngIf="controls.department.errors['pattern']"
+            >Only alphabets allowed</small
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="gap-5 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="lastName" />
+          <mat-error *ngIf="controls.lastName.errors">
+            <small *ngIf="controls.lastName.errors['required']"
+              >Last name is required
+            </small>
+            <small *ngIf="controls.lastName.errors['pattern']"
+              >Only alphabets allowed</small
+            >
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Designation</mat-label>
+        <mat-select formControlName="designation">
+          <mat-option *ngFor="let designation of designations$ | async" [value]="designation.Id">
+            {{ designation.Designation }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="controls.designation.errors">
+          <small *ngIf="controls.designation.errors['required']"
+            >Designation is required
+          </small>
+          <small *ngIf="controls.designation.errors['pattern']"
+            >Only alphabets allowed</small
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="gap-5 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Email ID</mat-label>
+        <input matInput type="text" formControlName="emailId" />
+        <button
+          type="button"
+          *ngIf="controls.emailId.value"
+          matSuffix
+          mat-icon-button
+          aria-label="clear"
+          (click)="controls.emailId.patchValue('')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="controls.emailId.errors">
+          <small *ngIf="controls.emailId.errors['required']"
+            >Email is required
+          </small>
+          <small *ngIf="controls.emailId.errors['pattern']"
+            >Email is in incorrect format</small
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Reporting Manager</mat-label>
+        <mat-select formControlName="reportingManager">
+          <mat-option *ngFor="let reportingManager of reportingManagers$ | async" [value]="reportingManager.Id">
+            {{ reportingManager.FullName }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="controls.reportingManager.errors">
+          <small *ngIf="controls.reportingManager.errors['required']"
+            >Reporting Manager is required
+          </small>
+          <small *ngIf="controls.reportingManager.errors['pattern']"
+            >Only alphabets allowed</small
+          >
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="gap-5 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+      <div>
+        <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+          <mat-label>Address</mat-label>
+          <textarea matInput formControlName="address"></textarea>
+        </mat-form-field>
+      </div> 
+      <div class="w-full bg-color rounded-3xl size-44 flex items-center justify-between"> 
+        <div *ngIf="isSelectedImg">
+          <img [src]="selectedImgUrl" alt="Profile Image" class="bg-white rounded-3xl size-32">
+        </div>
+        <div *ngIf="!isSelectedImg">
+          <img [src]="getProfileImage()" alt="Profile Image" class="bg-white rounded-3xl size-32">
+        </div>      
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden #fileInput />
+        <div class="flex flex-col gap-2 mx-2">
+          <button class="btn-change shadow-lg" type="button" mat-raised-button color="primary" (click)="fileInput.click()" [disabled]="loading">Change</button>
+          <button class="btn-remove shadow-lg" type="button" mat-raised-button color="accent"  (click)="removeImage()" [disabled]="loading">Remove</button>
+        </div>
+      </div>
+    </div>
+    <div class="gap-5 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Mobile Number</mat-label>
+        <input matInput type="number" formControlName="mobileNo" />
+        <mat-error *ngIf="controls.mobileNo.errors">
+          <small *ngIf="controls.mobileNo.errors['required']"
+            >Mobile number is required.</small
+          >
+          <small
+            *ngIf="
+              (!controls.mobileNo.errors['required'] &&
+                controls.mobileNo.errors['minLength']) ||
+              controls.mobileNo.errors['maxLength']
+            "
+            >Mobile Number must be 10 digits.</small
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+        <mat-label>Date Of Birth</mat-label>
+        <input matInput [matDatepicker]="dobPicker" formControlName="dob">
+        <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dobPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="">
+      <div class="flex items-center">
+        <span class="mr-2">Gender</span>
+        <mat-radio-group formControlName="genderId">
+          <mat-radio-button value="245fd6ff-6a2f-4151-9a04-6b7523ae440e">Male</mat-radio-button>
+          <mat-radio-button value="a66e0f40-ff5a-49fe-afd4-8daa6b726d43">Female</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="controls.genderId.errors && showCheck">
+          <small *ngIf="controls.genderId.errors['required']"
+            >Gender is required.</small
+          >
+        </mat-error>
+      </div>
+    </div>
+    <div class="flex flex-col items-center mt-4">
+      <button class="shadow-lg w-48" mat-raised-button color="primary" [disabled]="!isAccountActive">
+        Update
+      </button>
+    </div>
+    <div *ngIf="loading" class="fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-75 z-50">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  </form> 
+</div>
+
+

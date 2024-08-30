@@ -1,0 +1,30 @@
+// hot toast styling
+@use "node_modules/@ngneat/hot-toast/src/styles/styles.scss";
+//use this file for all ui resests
+@use "styling/ui-resets.scss";
+//angular material theming
+@use "styling/material-ui.scss";
+
+// value of the theme variables can be changed from here
+:root {
+  --clr-primary: hsl(241, 59%, 62%);
+  --clr-secondary: hsl(184, 64%, 35%);
+  --clr-tertiary: hsl(357, 62%, 52%);
+
+  --clr-background: hsl(0, 0%, 20%);
+  --clr-background-sec: hsl(240, 12%, 95%);
+
+  --clr-text: hsl(0, 0%, 20%);
+
+  --clr-success: hsl(133, 57%, 34%);
+  --clr-warn: hsl(0, 100%, 50%);
+
+  --clr-primary-text-foreground: white;
+  --clr-secondary-text-foreground: white;
+  --clr-tertiary-text-foreground: white;
+
+  --clr-success-text-foreground: white;
+  --clr-warn-text-foreground: white;
+
+  --dd-border-radius: 2.5rem;
+}

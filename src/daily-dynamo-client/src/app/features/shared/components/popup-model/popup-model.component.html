@@ -1,0 +1,22 @@
+<div class="fixed inset-0 flex items-center justify-center z-50">
+    <mat-card class="success-card max-w-md rounded-3xl shadow-xl">
+      <div class="icon rounded-t-lg p-2 flex items-center justify-center">
+        <mat-icon class="icon-display">{{icon}}</mat-icon>
+      </div>
+      <mat-card-header class="header">
+        <mat-card-title class="text-center">{{title}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="text-center">
+        <p>{{ message }}</p>
+      </mat-card-content>
+      <mat-card-actions class="justify-center">
+        <div *ngIf="isConfirmation" class="flex-col gap-3 justify-center">
+          <button  mat-raised-button color="primary" type="button" class="shadow-lg w-20 mr-3" (click)="onYesClick()" cdkFocusInitial>Yes</button>
+          <button mat-raised-button color="accent" type="button" class="shadow-lg w-20" (click)="onNoClick()">No</button>
+        </div>
+        <div *ngIf="!isConfirmation" class="justify-center">
+          <button class="shadow-lg w-20" mat-raised-button color="primary" (click)="closeModal()">OK</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+</div>

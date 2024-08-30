@@ -1,0 +1,118 @@
+// Define button styles
+.mdc-button,
+.mat-mdc-stroked-button {
+  border-radius: var(--dd-border-radius) !important;
+  // Primary button
+  &.mat-primary {
+    color: var(--clr-primary);
+
+    &:hover {
+      color: var(--clr-primary-text-foreground);
+      background-color: var(--clr-primary);
+    }
+  }
+
+  // Secondary button
+  &.mat-secondary {
+    color: var(--clr-secondary);
+
+    &:hover {
+      color: var(--clr-secondary-text-foreground);
+      background-color: var(--clr-secondary);
+    }
+  }
+
+  // Success button
+  &.mat-success {
+    color: var(--clr-success);
+
+    &:hover {
+      color: var(--clr-success-text-foreground);
+      background-color: var(--clr-success);
+    }
+  }
+
+  // Warn button
+  &.mat-warn {
+    color: var(--clr-warn);
+
+    &:hover {
+      color: var(--clr-warn-text-foreground);
+      background-color: var(--clr-warn);
+    }
+  }
+}
+
+// Define button elements with additional classes
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button,
+.mat-mdc-fab,
+.mat-mdc-mini-fab,
+.mat-mdc-icon-button {
+  // Apply primary colors
+  &.mat-primary {
+    color: var(--clr-primary-text-foreground);
+    background-color: var(--clr-primary);
+
+    &:not(:disabled, :hover) {
+      color: var(--clr-primary-text-foreground);
+      background-color: var(--clr-primary);
+    }
+  }
+
+  // Apply secondary colors
+  &.mat-secondary {
+    color: var(--clr-secondary-text-foreground);
+    background-color: var(--clr-secondary);
+
+    &:not(:disabled, :hover) {
+      color: var(--clr-secondary-text-foreground);
+      background-color: var(--clr-secondary);
+    }
+  }
+
+  // Apply success colors
+  &.mat-success {
+    color: var(--clr-success-text-foreground);
+    background-color: var(--clr-success);
+
+    &:not(:disabled, :hover) {
+      color: var(--clr-success-text-foreground);
+      background-color: var(--clr-success);
+    }
+  }
+
+  // Apply warn colors
+  &.mat-warn {
+    color: var(--clr-warn-text-foreground);
+    background-color: var(--clr-warn);
+
+    &:not(:disabled, :hover) {
+      color: var(--clr-warn-text-foreground);
+      background-color: var(--clr-warn);
+    }
+  }
+}
+
+// overide mat input bg color.
+div.mdc-text-field--filled:not(.mdc-text-field--disabled),
+div.mat-mdc-form-field-focus-overlay {
+  background-color: transparent;//var(--clr-background-sec);
+}
+
+// colors based on bg colour.
+.bg-background {
+  color: var(--clr-primary-text-foreground);
+}
+.bg-background_sec {
+  color: var(--clr-text);
+}
+.bg-primary {
+  color: var(--clr-primary-text-foreground);
+}
+.bg-secondary {
+  color: var(--clr-secondary-text-foreground);
+}
+.bg-tertiary {
+  color: var(--clr-tertiary-text-foreground);
+}

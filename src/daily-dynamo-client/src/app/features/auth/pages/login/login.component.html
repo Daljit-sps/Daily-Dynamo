@@ -1,0 +1,72 @@
+<section
+  class="flex justify-center h-screen max-h-screen overflow-hidden bg-background_sec"
+>
+
+  <div class="grid place-items-center basis-[100%]">
+    <dd-auth-form class="overflow-hidden shadow-theme_form rounded-theme">
+      <form
+        (ngSubmit)="login()"
+        [formGroup]="form"
+        class="flex flex-col gap-3"
+      >
+        <div class="">
+          <mat-form-field class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput  type="text" formControlName="email" />
+            <button
+              type="button"
+              *ngIf="controls.email.value"
+              matSuffix
+              mat-icon-button
+              aria-label="clear"
+              (click)="form.controls.email.patchValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="controls.email.errors">
+              <small *ngIf="controls.email.errors['required']"
+                >User name is required
+              </small>
+              <small *ngIf="controls.email.errors['emailValidator']"
+                >User name is in incorrect format</small
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="">
+          <mat-form-field class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error *ngIf="controls.password.errors">
+              <small *ngIf="controls.password.errors['required']"
+                >Password is required.</small
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col mt-4">
+          <button class="shadow-lg" [disabled]="isLoading" mat-raised-button color="primary">
+            Sign In
+          </button>
+        </div>
+        <div class="text-sm text-center md:text-[0.8rem] cursor-pointer text-primary">
+          <a class="" [ngClass]="{ 'disabled-link': isLoading }" (click)="isLoading ? null : forgotPassword()">
+            Forgot Password?
+          </a>
+        </div>        
+        <div class="text-sm text-center md:text-[1rem]">
+            <a class="">
+              Don't have an account?
+              <span
+                class="font-bold cursor-pointer text-primary"
+                routerLink="/auth/signup"
+                >Sign Up</span
+              >
+            </a>
+        </div>
+      </form>
+    </dd-auth-form>
+  </div>
+  <dd-auth-hero class="hidden lg:block overflow-hidden basis-[100%]" />
+</section>
+

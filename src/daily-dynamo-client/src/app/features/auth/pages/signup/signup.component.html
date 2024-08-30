@@ -1,0 +1,104 @@
+<section
+  class="flex justify-center h-screen max-h-screen overflow-hidden bg-background_sec"
+>
+  <dd-auth-hero class="hidden lg:block overflow-hidden basis-[100%]" />
+  <div class="grid place-items-center basis-[100%]">
+    <dd-auth-form class="overflow-hidden shadow-theme_form rounded-theme">
+      <form
+        (ngSubmit)="signup()"
+        [formGroup]="form"
+        class="flex flex-col gap-3"
+      >
+        <div class="gap-2 space-x-0 sm:space-x-2 lg:space-x-0 xl:flex">
+          <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+            <mat-label>First Name:</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+            <mat-error *ngIf="controls.firstName.errors">
+              <small *ngIf="controls.firstName.errors['required']"
+                >First name is required
+              </small>
+              <small *ngIf="controls.firstName.errors['pattern']"
+                >Only alphabets allowed</small
+              >
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-full sm:w-auto lg:w-full xl:w-auto">
+            <mat-label>Last Name:</mat-label>
+            <input matInput type="text" formControlName="lastName" />
+            <mat-error *ngIf="controls.lastName.errors">
+              <small *ngIf="controls.lastName.errors['required']"
+                >Last name is required
+              </small>
+              <small *ngIf="controls.lastName.errors['pattern']"
+                >Only alphabets allowed</small
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="">
+          <mat-form-field class="w-full">
+            <mat-label>Email ID:</mat-label>
+            <input matInput type="text" formControlName="emailId" />
+            <button
+              type="button"
+              *ngIf="controls.emailId.value"
+              matSuffix
+              mat-icon-button
+              aria-label="clear"
+              (click)="form.controls.emailId.patchValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="controls.emailId.errors">
+              <small *ngIf="controls.emailId.errors['required']"
+                >emailId is required
+              </small>
+              <small *ngIf="controls.emailId.errors['email']"
+                >Email is in incorrect format</small
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="">
+          <mat-form-field class="w-full">
+            <mat-label>Mobile Number:</mat-label>
+            <input matInput type="number" formControlName="mobileNo" />
+            <mat-error *ngIf="controls.mobileNo.errors">
+              <small *ngIf="controls.mobileNo.errors['required']"
+                >Mobile number is required.</small
+              >
+              <small
+                *ngIf="
+                  (!controls.mobileNo.errors['required'] &&
+                    controls.mobileNo.errors['minLength']) ||
+                  controls.mobileNo.errors['maxLength']
+                "
+                >Mobile Number must be 10 digits.</small
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex flex-col mt-4">
+          <button
+            [disabled]="isLoading"
+            class="shadow-lg"
+            mat-raised-button
+            color="primary"
+          >
+            Signup
+          </button>
+        </div>
+        <div class="text-sm text-center md:text-[1rem]">
+          <a class="">
+            Already have an account?
+            <span
+              class="font-bold cursor-pointer text-primary"
+              routerLink="/auth"
+              >Sign In</span
+            >
+          </a>
+        </div>
+      </form>
+    </dd-auth-form>
+  </div>
+</section>

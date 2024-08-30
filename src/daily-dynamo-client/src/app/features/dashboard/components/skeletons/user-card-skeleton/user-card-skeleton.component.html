@@ -1,0 +1,55 @@
+<section
+  id="card"
+  class="relative grid grid-cols-4 grid-rows-5 p-4 mx-5 rounded-2xl md:mx-0 shadow-theme_form overflow-clip"
+>
+  <ng-container>
+    <div class="relative">
+      <div
+        class="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full bg-slate-500 animate-pulse"
+      >
+        <span class="basis-[100%] flex items-end justify-center"></span>
+        <span class="basis-[100%]"></span>
+      </div>
+    </div>
+    <div class="">
+      <img
+        class="w-full h-full rounded-full aspect-square bg-slate-500 animate-pulse"
+        [src]=""
+        alt=""
+      />
+    </div>
+    <div class="">
+      <div class="flex flex-col items-center gap-2 mt-4">
+        <h3 class="w-5 h-1 rounded-full bg-slate-500 animate-pulse"></h3>
+        <p class="w-full h-2 rounded-full bg-slate-500 animate-pulse"></p>
+      </div>
+    </div>
+    <div class="flex flex-col justify-center px-5 sm:px-0">
+      <h4 class="flex items-center gap-2">
+        <mat-icon
+          class="text-lg"
+          color="primary"
+          aria-hidden="false"
+          aria-label="email address icon"
+          >mail</mat-icon
+        ><span class="w-full h-2 line-clamp-1 animate-pulse bg-slate-500">
+        </span>
+      </h4>
+      <h4 class="flex items-center gap-2">
+        <mat-icon
+          class="text-lg"
+          color="primary"
+          aria-hidden="false"
+          aria-label="phone number icon"
+          >call</mat-icon
+        >
+        <span class="w-full h-2 bg-slate-500 animate-pulse line-clamp-1"
+          >: --- ---</span
+        >
+      </h4>
+    </div>
+    <div class="absolute w-full h-full -z-[1] flex flex-col">
+      <div id="overlayClip" class="bg-slate-500 basis-[100%]"></div>
+    </div>
+  </ng-container>
+</section>

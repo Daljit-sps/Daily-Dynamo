@@ -1,0 +1,58 @@
+section {
+  aspect-ratio: 0.69/1;
+
+  :nth-child(1) {
+    grid-column-start: 4;
+    grid-column-end: 5;
+  }
+  :nth-child(2) {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+  :nth-child(3) {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+  :nth-child(4) {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 5;
+    grid-row-end: 6;
+  }
+
+  div#overlayClip {
+    clip-path: polygon(
+      100% 0px,
+      100% 55.49%,
+      50.42% 37.71%,
+      -2px 56.06%,
+      0px 0px
+    );
+  }
+}
+
+section#card {
+  @media (screen(sm)) {
+    img {
+      filter: grayscale(0%);
+    }
+
+    &:hover {
+      img {
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
+
+.img-container{
+  border-radius: 50% ;
+  height: 100px;
+  z-index: 1;
+  background-color: white;
+  overflow: hidden;
+}

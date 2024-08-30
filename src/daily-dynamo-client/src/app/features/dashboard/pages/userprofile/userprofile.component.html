@@ -1,0 +1,13 @@
+<div class="profile-div relative place-items-center md-flex bg-background_sec">
+    <div class="top-div-responsive absolute w-96 h-80 top-0 left-0 bg-color rounded-br-full md:shrink-0">
+        <nav class="flex flex-col p-4 bg-color w-48">
+            <a class="py-2 px-4 my-1 text-white rounded-3xl nav-element w-48" (click)="redirectToProfilePage(userId)" [ngClass]="{ 'selected': selectedOption === 'profile' }">Profile</a>
+            <a class="py-2 px-4 my-1 text-white rounded-3xl nav-element w-48" (click)="redirectToAccountSettingsPage(userId)" [ngClass]="{ 'selected': selectedOption === 'accountSettings' }">Account Settings</a>
+        </nav>
+    </div>
+    <div class="bottom-div-responsive absolute w-96 h-[28rem] inset-y-96 right-0 bg-color rounded-tl-full"> 
+    </div>
+    <div class="data-responsive w-7/12 h-[48rem] absolute top-10 inset-x-72  bg-white rounded-theme  p-5 mb-10 overflow-y-auto">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<section class="flex flex-col items-center h-full gap-8 p-6">
+  <div>
+    <h1 class="text-3xl underline decoration-primary">
+      Tony Stark`s Status Report
+    </h1>
+  </div>
+  <ng-container *ngIf="dsr | async as dsrData; else loading">
+    <div class="flex flex-col w-full gap-5 px-4 lg:px-8">
+      <div class="flex items-center gap-3">
+        <p class="font-bold">Date:</p>
+        <p>{{ dsrData.reportDate }}</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <h2 class="text-lg font-bold">Task Accomplished</h2>
+        <p>{{ dsrData.taskAccomplished }}</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <h2 class="text-lg font-bold">Challanges</h2>
+        <p>{{ dsrData.challengesFaced }}</p>
+      </div>
+      <div class="flex flex-col gap-1">
+        <h2 class="text-lg font-bold">Next Day Plan</h2>
+        <p>{{ dsrData.nextDayPlan }}</p>
+      </div>
+    </div>
+  </ng-container>
+</section>
+<ng-template #loading>
+  <div><mat-spinner diameter="30"></mat-spinner></div>
+</ng-template>

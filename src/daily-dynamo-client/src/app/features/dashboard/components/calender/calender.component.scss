@@ -1,0 +1,10 @@
+::ng-deep {
+  .mat-calendar-table-header th,
+  .mat-calendar-body-label,
+  .mat-calendar-arrow,
+  .mat-mdc-button:not(:disabled),
+  .mat-calendar-body-cell-content {
+    fill: white !important;
+    color: white !important;
+  }
+}

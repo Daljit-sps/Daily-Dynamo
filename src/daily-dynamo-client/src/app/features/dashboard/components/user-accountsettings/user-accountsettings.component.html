@@ -1,0 +1,137 @@
+
+<div class="grid container basis-[100%]">
+    <div class="m-5">
+        <h1 class="font-bold">Update Password</h1>
+        <hr class="h-px my-3 bg-zinc-950 border-0 dark:bg-gray-700">
+        <div *ngIf="userRole == 1; else passwordCriteria">
+          <div class="text-xs">
+            <p>Send reset password email to user by clicking on below button.</p>
+          </div>
+          <div class="responsive flex">
+            <button class="shadow-lg w-48 mt-5" type="button" mat-raised-button color="primary" (click)="openConfirmationDialog(false)">
+              Reset Password
+            </button>
+          </div>
+        </div>
+        <ng-template #passwordCriteria>
+          <div class="responsive flex justify-between mt-5">
+            <div class="">
+              <h6>Password Criteria</h6>
+              <div class="flex-col mt-2">
+                  <ul class="text-xs">
+                      <li>
+                          <div class="flex items-center gap-1">
+                              <mat-icon [color]="isPasswordLengthValid ? 'primary' : 'warn'" class="check-mat-icon">check_circle</mat-icon>
+                              <span>Password length should be between 8 to 32 characters.</span>
+                          </div>
+                      </li>
+                      <li>
+                          <div class="flex items-center gap-1">
+                              <mat-icon [color]="isUpperCaseValid ? 'primary' : 'warn'" class="check-mat-icon">check_circle</mat-icon>
+                              <span>Include at least one uppercase letter.</span>
+                          </div>
+                      </li>
+                      <li>
+                        <div class="flex items-center gap-1">
+                            <mat-icon [color]="isLowerCaseValid ? 'primary' : 'warn'" class="check-mat-icon">check_circle</mat-icon>
+                            <span>Include at least one lowercase letter.</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="flex items-center gap-1">
+                            <mat-icon [color]="isNumberValid ? 'primary' : 'warn'" class="check-mat-icon">check_circle</mat-icon>
+                            <span>Include at least one numeral.</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="flex items-center gap-1">
+                            <mat-icon [color]="isSpecialCharValid ? 'primary' : 'warn'" class="check-mat-icon">check_circle</mat-icon>
+                            <span>Include at least one special character.</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="flex items-center gap-1">
+                            <mat-icon [color]="isPasswordMatchValid ? 'primary' : 'warn'" class="check-mat-icon">check_circle</mat-icon>
+                            <span>Password field must match with the Confirm password field.</span>
+                        </div>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+              <div class="">
+                  <form
+                  (ngSubmit)="changeUserPassword()"
+                  [formGroup]="form"
+                  class="responsive flex flex-col"
+                >
+                  <div class="">
+                    <mat-form-field class="w-48">
+                      <mat-label>Old Password:</mat-label>
+                      <input matInput type="password" formControlName="oldPassword" />
+                      <mat-error *ngIf="controls.oldPassword.errors">
+                          <small *ngIf="controls.oldPassword.errors['required']"
+                                >Old Password is required.</small
+                          >
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="">
+                      <mat-form-field class="w-48">
+                          <mat-label>New Password:</mat-label>
+                          <input matInput type="password" formControlName="newPassword" (input)="newPasswordValidity()"/>
+                          <mat-error *ngIf="controls.newPassword.errors">
+                              <small *ngIf="controls.newPassword.errors['required']">
+                                  New Password is required.
+                                </small>
+                          </mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div class="">
+                      <mat-form-field class="w-48">
+                          <mat-label>Confirm Password</mat-label>
+                          <input
+                            matInput
+                            [errorStateMatcher]="matcher"
+                            type="password"
+                            formControlName="confirmPassword"
+                            (input)="confirmPasswordValidity()"
+                          />
+                          <mat-error *ngIf="controls.confirmPassword.errors">
+                            <small *ngIf="controls.confirmPassword.errors['required']">
+                                Confirm Password is required.
+                              </small>
+                          </mat-error>
+                        </mat-form-field>
+                  </div>
+                  <div class="responsive flex flex-col items-center">
+                    <button class="shadow-lg w-28" mat-raised-button color="primary">
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </ng-template>
+        
+    </div>
+    
+    <div class="m-5">
+        <h1 class="font-bold">{{ Text }}</h1>
+        <hr class="h-px my-3 bg-zinc-950 border-0 dark:bg-gray-700">
+        <div class="text-xs">
+            <p>{{ message }}</p>
+        </div>
+        <div class="responsive flex">
+            <button class="shadow-lg w-48 mt-5" id="deactivateAccountBtn" type="button" mat-raised-button [color]="buttonColor" [disabled]="isLoading" (click)="openConfirmationDialog(true)">
+              {{ Text }}
+            </button>
+          </div>
+        
+    </div>
+
+    <div *ngIf="isLoading" class="fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-75 z-50">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+</div>
+
+

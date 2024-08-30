@@ -1,0 +1,57 @@
+<div class="grid basis-[100%] overflow-y-auto">
+    <form (ngSubmit)="openConfirmationDialog()" [formGroup]="form" class="form-div flex flex-col gap-2 rounded-lg p-10">
+        <div class="place-items-center">
+            <h2>{{userName}}'s Status Report</h2>
+        <hr class="h-px bg-zinc-950 border-0 dark:bg-gray-700">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-[25%, auto] text-xs ">
+            <div class="flex flex-col">
+                <label for="reportDate" class="font-semibold">Date</label>
+                <mat-form-field class="w-full" appearance="outline">
+                    <input matInput [matDatepicker]="reportDatePicker" formControlName="reportDate" id="reportDate" [readonly]="selectedDSR !== null">
+                    <mat-datepicker-toggle matSuffix [for]="reportDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #reportDatePicker></mat-datepicker>
+                    <mat-error *ngIf="controls.reportDate.errors">
+                        <small *ngIf="controls.reportDate.errors['required']">Date is required</small>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="flex flex-col">
+                <label for="taskAccomplished" class="font-semibold">Task Accomplished</label>
+                <mat-form-field class="w-full" appearance="outline">
+                    <textarea matInput placeholder="Enter tasks accomplished here..." formControlName="taskAccomplished"
+                        defaultValue="" [readonly]="selectedDSR !== null"></textarea>
+                    <mat-error *ngIf="controls.taskAccomplished.errors">
+                        <small *ngIf="controls.taskAccomplished.errors['required']">Task Accomplished is required</small>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="flex flex-col">
+                <label for="challengesFaced" class="font-semibold">Challenges</label>
+                <mat-form-field class="w-full" appearance="outline">
+                    <textarea matInput placeholder="Enter challenges faced here..." formControlName="challengesFaced"
+                        rows="2" [readonly]="selectedDSR !== null"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="flex flex-col">
+                <label for="nextDayPlan" class="font-semibold">Next Day Plan</label>
+                <mat-form-field class="w-full" appearance="outline">
+                    <textarea matInput placeholder="Enter next day plan here..." formControlName="nextDayPlan"
+                        rows="2" [readonly]="selectedDSR !== null"></textarea>
+                    <mat-error *ngIf="controls.nextDayPlan.errors">
+                        <small *ngIf="controls.nextDayPlan.errors['required']">Next day plan is required</small>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <div class="flex flex-col items-center mt-0">
+            <button *ngIf="!selectedDSR" [disabled]="loading"  class="shadow-lg w-48" mat-raised-button color="primary" type="submit">Submit</button>
+        </div>
+
+        <div *ngIf="loading" class="fixed inset-0 flex items-center justify-center bg-gray-300 bg-opacity-75 z-50">
+            <mat-spinner diameter="50"></mat-spinner>
+          </div>
+      
+    </form>
+</div>

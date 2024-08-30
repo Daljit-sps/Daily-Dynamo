@@ -1,0 +1,69 @@
+<section class="w-full h-full">
+  <mat-drawer-container class="h-full">
+    <mat-drawer
+      [opened]="!isMobile"
+      class="w-52 bg-background"
+      #drawer
+      [mode]="isMobile ? 'over' : 'side'"
+    >
+      <div
+        class="flex flex-col items-center justify-between h-full gap-8 py-10 bg-background"
+      >
+        <div class="space-y-8">
+          <a role="button" routerLink="home" class="flex justify-center gap-2">
+            <img src="/assets/icons/dd-icon.svg" alt="daily dynamo logo" />
+            <h3 class="flex flex-col font-bold">
+              <span> Daily </span>
+              <span> Dynamo </span>
+            </h3>
+          </a>
+          <menu class="flex flex-col gap-4">
+            <ng-container *ngFor="let item of navLinks">
+              <li *ngIf="!testFunc(item.permission)">
+                <a
+                  class="flex items-center justify-start gap-2 text-sm transition-all duration-300 ease-out"
+                  ariaCurrentWhenActive="page"
+                  routerLinkActive="text-primary"
+                  [routerLink]="[item.link]"
+                >
+                  <mat-icon class="text-[1.3rem]">{{ item.icon }}</mat-icon>
+                  <span>
+                    {{ item.label }}
+                  </span>
+                </a>
+              </li>
+            </ng-container>
+          </menu>
+        </div>
+
+        <menu class="flex flex-col gap-4">
+          <li class="">
+            <a
+              role="button"
+              class="flex items-center justify-start gap-2 text-sm"
+              (click)="signOut()"
+            >
+              <mat-icon>logout</mat-icon><span> Sign Out </span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="flex items-center justify-start gap-2 text-sm"
+              role="button"
+              routerLink="/dashboard/userprofile/user-accountsettings"
+            >
+              <mat-icon>settings</mat-icon>
+              <span> Account Settings </span>
+            </a>
+          </li>
+        </menu>
+      </div>
+    </mat-drawer>
+    <div class="flex flex-col h-full">
+      <app-nav [drawer]="drawer" />
+      <section class="flex-1 bg-background_sec mt-[3rem]">
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </mat-drawer-container>
+</section>

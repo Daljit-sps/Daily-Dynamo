@@ -1,0 +1,66 @@
+<section class="max-h-full">
+  <div *ngIf="showDsrStatusTable" class="rounded-table">
+    <table mat-table [dataSource]="dsrStatusList" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.status === 'Submitted'; else otherStatus">
+            <mat-icon class="status-green">done</mat-icon>
+          </ng-container>
+          <ng-template #otherStatus>
+            <mat-icon class="status-red">clear</mat-icon>
+          </ng-template>
+        </td>
+        
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['name', 'status']" class="custom-header"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name', 'status']" class="matRowHover" (click)="viewDSR(row)"></tr>
+    </table>
+    <mat-paginator [length]="totalItems"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="onPageChange($event)"
+               showFirstLastButtons="true">
+    </mat-paginator>
+  </div>
+
+  <div *ngIf="showUserDsrTable" class="rounded-table">
+    <table mat-table [dataSource]="userDSRList" class="mat-elevation-z8">
+      <ng-container matColumnDef="reportDate">
+        <th mat-header-cell *matHeaderCellDef>Report Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.reportDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="taskAccomplished">
+        <th mat-header-cell *matHeaderCellDef>Task Accomplished</th>
+        <td mat-cell *matCellDef="let element">{{ truncateText(element.taskAccomplished) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nextDayPlan">
+        <th mat-header-cell *matHeaderCellDef>Next Day Plan</th>
+        <td mat-cell *matCellDef="let element">{{ truncateText(element.nextDayPlan) }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['reportDate', 'taskAccomplished', 'nextDayPlan']" class="custom-header"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['reportDate', 'taskAccomplished', 'nextDayPlan']" class="matRowHover" (click)="viewDSR(row)"></tr>
+    </table>
+    <mat-paginator [length]="totalItems"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="onPageChange($event)"
+               showFirstLastButtons="true">
+    </mat-paginator>  
+  </div>
+
+  <ng-container *ngIf="isDataNull">
+    <div class="no-dsr-message">
+      <h2>No DSR data available yet.</h2>
+    </div>
+  </ng-container>
+</section>

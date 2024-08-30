@@ -1,0 +1,22 @@
+.mat-spinner {
+  fill: white;
+}
+
+.bg-gray-300 {
+  background-color: rgba(0, 0, 0, 0.2); /* Lighter shade for the overlay */
+}
+
+@media screen and (max-width: 768px) {
+    .form-group {
+      flex-direction: column;
+    }
+    .form-div{
+        gap: 1px;
+        padding-top: 0;
+    }
+    .mat-form-field {
+      max-width: 100%; /* Set maximum width to full width on smaller screens */
+    }
+
+
+  }

@@ -1,0 +1,58 @@
+@use "@angular/material" as mat;
+@use "./variables.scss" as clr-variables;
+@use "material-extentions.scss";
+@include mat.core();
+
+$daily-dynamo-client-primary: mat.define-palette(
+  clr-variables.$clr-dd-primary,
+  500
+);
+$daily-dynamo-client-accent: mat.define-palette(
+  clr-variables.$clr-dd-accent,
+  50
+);
+$daily-dynamo-custom-typography: mat.define-typography-level(
+  $font-size: "0.9rem",
+);
+$daily-dynamo-custom-typography-config: mat.define-typography-config();
+$daily-dynamo-client-warn: mat.define-palette(mat.$red-palette, 500);
+
+$daily-dynamo-client-theme: mat.define-light-theme(
+  (
+    typography: $daily-dynamo-custom-typography-config,
+  )
+);
+@include mat.typography-hierarchy($daily-dynamo-client-theme);
+
+* {
+  font-size: 0.98em;
+}
+
+@media (screen(sm)) {
+  * {
+    font-size: 1em;
+  }
+  // $daily-dynamo-custom-typography-config: mat.define-typography-config(
+  //   $body-1: mat.define-typography-level(30px, 0.2rem, 500),
+  //   $button: mat.define-typography-level(30px, 0.5rem, 400),
+  // );
+  // $daily-dynamo-client-theme: mat.define-light-theme(
+  //   (
+  //     typography: $daily-dynamo-custom-typography-config,
+  //   )
+  // );
+  // @include mat.typography-hierarchy($daily-dynamo-client-theme);
+}
+
+$daily-dynamo-client-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $daily-dynamo-client-primary,
+      accent: $daily-dynamo-client-accent,
+      warn: $daily-dynamo-client-warn,
+    ),
+    typography: $daily-dynamo-custom-typography-config,
+  )
+);
+
+@include mat.all-component-themes($daily-dynamo-client-theme);
